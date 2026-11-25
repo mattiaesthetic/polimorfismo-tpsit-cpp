@@ -33,3 +33,27 @@ public:
     void presentati() const override { cout << "Sono " << nome << ", arciere dall'occhio infallibile.\n"; }
     void attacca() const override { cout << nome << " scocca una freccia!\n"; }
 };
+
+void turno(Personaggio* p) {
+    p->presentati();
+    p->attacca();
+    cout << '\n';
+}
+
+int main() {
+    vector<Personaggio*> party = {
+        new Guerriero("Conan"),
+        new Mago("Merlino"),
+        new Arciere("Legolas"),
+        new Mago("Gandalf"),
+        new Guerriero("Aragorn")
+    };
+
+    cout << "=== Inizio del round ===\n\n";
+    for (Personaggio* p : party)
+        turno(p);
+
+    for (Personaggio* p : party)
+        delete p;
+    return 0;
+}
